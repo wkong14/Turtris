@@ -1,9 +1,5 @@
 //
 //  AppDelegate.swift
-//  RainCat
-//
-//  Created by Marc Vandehey on 8/29/16.
-//  Copyright © 2016 Thirteen23. All rights reserved.
 //
 
 import UIKit

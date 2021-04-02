@@ -1,9 +1,5 @@
 //
 //  GameViewController.swift
-//  RainCat
-//
-//  Created by Marc Vandehey on 8/29/16.
-//  Copyright © 2016 Thirteen23. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +11,7 @@ class GameViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let sceneNode = GameScene(size: view.frame.size)
+    let sceneNode = MenuScene(size: view.frame.size)
 
     if let view = self.view as! SKView? {
       view.presentScene(sceneNode)

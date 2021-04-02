@@ -1,9 +1,5 @@
 //
 //  GameScene.swift
-//  RainCat
-//
-//  Created by Marc Vandehey on 8/29/16.
-//  Copyright © 2016 Thirteen23. All rights reserved.
 //
 
 import SpriteKit
@@ -150,7 +146,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bullet)
         
         bullet.run(SKAction.sequence(actionArray))
-        
     }
     
     private func spawnBox() {
@@ -323,7 +318,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if currentBoxSpawnTime > boxDropSpawnRate {
             currentBoxSpawnTime = 0
             spawnBox()
-            
         }
         
         self.lastUpdateTime = currentTime
@@ -332,8 +326,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scene?.view?.isPaused = true
             print("GAME OVER MAN")
         }
-        
-        
-        
     }
 }
