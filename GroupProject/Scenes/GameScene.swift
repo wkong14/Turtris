@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var turretThree: SKSpriteNode!
     var turretFour: SKSpriteNode!
     var money: Int = 5
-    let score = SKLabelNode(fontNamed: "Futura-Medium")
+    let score = SKLabelNode(fontNamed: "Futura")
     
     private func spawnPlus(){
         
@@ -184,14 +184,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func sceneDidLoad() {
+        self.backgroundColor = UIColor.darkGray
         self.physicsWorld.gravity = CGVector(dx: 0.0,dy: -2.8)
         self.lastUpdateTime = 0
         backgroundNode.setup(size: size)
         addChild(backgroundNode)
         spawnPlus()
         
-        score.text = "Money: \(money)"
-        score.position = CGPoint(x: frame.midX, y:frame.midY)
+        score.text = "Money: $\(money)"
+        score.position = CGPoint(x: 85, y:frame.height - 85)
+        score.fontSize = 25
+        score.zPosition = CGFloat(100)
+        score.alpha = CGFloat(0.8)
         addChild(score)
         self.physicsWorld.contactDelegate = self
         
