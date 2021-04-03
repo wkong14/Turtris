@@ -14,6 +14,8 @@ class MenuScene: SKScene {
     var playButton = SKSpriteNode()
     let playButtonText = SKTexture(imageNamed: "play")
     
+    let credits = SKSpriteNode(imageNamed: "Credits")
+    
     var turret = SKSpriteNode()
     let turretImg = SKTexture(imageNamed: "turret1")
     
@@ -27,16 +29,6 @@ class MenuScene: SKScene {
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor.lightGray
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -2)
-        
-        
-        /*
-        let title = SKLabelNode(fontNamed: "Futura-Medium")
-        title.text = "Turtris"
-        title.position = CGPoint(x: frame.midX, y: frame.midY + 200)
-        title.fontSize = 85
-        title.fontColor = SKColor.black
-        self.addChild(title)
-         */
         
         title = SKSpriteNode(texture: titleImg)
         title.position = CGPoint(x: frame.midX, y: frame.midY + 200)
@@ -57,6 +49,10 @@ class MenuScene: SKScene {
         playButton = SKSpriteNode(texture: playButtonText)
         playButton.position = CGPoint(x: frame.midX, y: frame.midY - 270)
         self.addChild(playButton)
+        
+        credits.position = CGPoint(x: frame.midX, y: playButton.position.y - 90)
+        credits.size = CGSize(width: 100, height: 40)
+        self.addChild(credits)
     }
     
     private func spawnBox() {
@@ -120,11 +116,13 @@ class MenuScene: SKScene {
             let node = self.atPoint(pos)
 
             if node == playButton {
-                if let view = view {
                     let transition:SKTransition = SKTransition.fade(withDuration: 1)
                     let scene:SKScene = GameScene(size: self.size)
                     self.view?.presentScene(scene, transition: transition)
-                }
+            } else if node == credits {
+                let cred = CreditsScene(fileNamed: "CreditsScene")
+                cred?.scaleMode = .aspectFill
+                self.scene?.view?.presentScene(cred)
             }
         }
     }

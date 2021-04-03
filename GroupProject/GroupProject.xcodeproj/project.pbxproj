@@ -10,6 +10,8 @@
 		0AE62A9C2617B332003C2A39 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE62A9B2617B332003C2A39 /* MenuScene.swift */; };
 		383C4B3E2617D8AB0017136B /* UpgradeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 383C4B3D2617D8AB0017136B /* UpgradeScene.sks */; };
 		383C4B412617D95B0017136B /* UpgradeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383C4B402617D95B0017136B /* UpgradeScene.swift */; };
+		383C4B482617FBAF0017136B /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 383C4B472617FBAF0017136B /* CreditsScene.sks */; };
+		383C4B4B2617FBE80017136B /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383C4B4A2617FBE80017136B /* CreditsScene.swift */; };
 		9603A19C26166A3F00C4BE66 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9603A19B26166A3F00C4BE66 /* Background.swift */; };
 		9603A19F261676C800C4BE66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9603A19E261676C800C4BE66 /* Constants.swift */; };
 		BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */; };
@@ -24,6 +26,8 @@
 		0AE62A9B2617B332003C2A39 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		383C4B3D2617D8AB0017136B /* UpgradeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UpgradeScene.sks; sourceTree = "<group>"; };
 		383C4B402617D95B0017136B /* UpgradeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeScene.swift; sourceTree = "<group>"; };
+		383C4B472617FBAF0017136B /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
+		383C4B4A2617FBE80017136B /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		9603A19B26166A3F00C4BE66 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		9603A19E261676C800C4BE66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BBA2E4A21D74A62C00853E63 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +58,8 @@
 				BBA2E4AB1D74A62C00853E63 /* GameScene.swift */,
 				383C4B3D2617D8AB0017136B /* UpgradeScene.sks */,
 				383C4B402617D95B0017136B /* UpgradeScene.swift */,
+				383C4B472617FBAF0017136B /* CreditsScene.sks */,
+				383C4B4A2617FBE80017136B /* CreditsScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 				383C4B3E2617D8AB0017136B /* UpgradeScene.sks in Resources */,
 				BBA2E4B31D74A62C00853E63 /* Assets.xcassets in Resources */,
 				BBA2E4B61D74A62C00853E63 /* LaunchScreen.storyboard in Resources */,
+				383C4B482617FBAF0017136B /* CreditsScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9603A19F261676C800C4BE66 /* Constants.swift in Sources */,
+				383C4B4B2617FBE80017136B /* CreditsScene.swift in Sources */,
 				BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */,
 				BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */,
 				0AE62A9C2617B332003C2A39 /* MenuScene.swift in Sources */,

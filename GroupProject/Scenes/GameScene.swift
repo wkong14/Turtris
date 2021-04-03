@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         upgrade.name = "upgrade"
         upgrade.position = CGPoint(x: 335, y: frame.height - 85)
         upgrade.size = CGSize(width: 100, height: 50)
+        upgrade.zPosition = CGFloat(100)
         self.addChild(upgrade)
     }
     
