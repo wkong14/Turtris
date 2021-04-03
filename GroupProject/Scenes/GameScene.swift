@@ -5,6 +5,10 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    private var boxesDestroyed: Int = 0
+    private var boxSpawned: Bool = false
+    private var wave: Int = 1
+    let upgrade = SKSpriteNode(imageNamed: "add")
     private let xPosition: [Int] = [50, 150, 250, 350]
     private var lastUpdateTime : TimeInterval = 0
     private var currentBoxSpawnTime : TimeInterval = 0
@@ -24,6 +28,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var turretFour: SKSpriteNode!
     var money: Int = 5
     let score = SKLabelNode(fontNamed: "Futura")
+    let waveLabel = SKLabelNode(fontNamed: "Futura")
+    let cooldown = SKLabelNode(fontNamed: "Futura")
+    
+    override func didMove(to view: SKView) {
+        upgrade.name = "upgrade"
+        upgrade.position = CGPoint(x: 350, y: 800)
+        self.addChild(upgrade)
+    }
     
     private func spawnPlus(){
         
@@ -181,6 +193,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box.position = CGPoint(x: CGFloat(random), y: yPosition)
         box.speed = 0.1
         addChild(box)
+        if boxesDestroyed == 5 {
+            boxSpawned = false
+        }
+        else if boxesDestroyed == 10 {
+            boxSpawned = false
+        }
+        else if boxesDestroyed == 18 {
+            boxSpawned = false
+        }
+        else if boxesDestroyed == 28 {
+            boxSpawned = false
+        }
+        else if boxesDestroyed == 40 {
+            boxSpawned = false
+        }
+        else {
+            boxSpawned = true
+        }
     }
     
     override func sceneDidLoad() {
@@ -197,6 +227,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score.zPosition = CGFloat(100)
         score.alpha = CGFloat(0.8)
         addChild(score)
+        
+        waveLabel.text = "Wave: \(wave)"
+        waveLabel.position = CGPoint(x: 70, y: score.position.y - 35)
+        waveLabel.fontSize = 25
+        waveLabel.zPosition = CGFloat(100)
+        waveLabel.alpha = CGFloat(0.8)
+        addChild(waveLabel)
+        
+        cooldown.text = "You have 10 seconds until the next wave!"
+        cooldown.position = CGPoint(x: frame.midX, y: frame.midY)
+        cooldown.fontSize = 20
+        cooldown.zPosition = CGFloat(100)
+        cooldown.alpha = CGFloat(0.8)
+        cooldown.isHidden = true
+        addChild(cooldown)
+        
         self.physicsWorld.contactDelegate = self
         
     }
@@ -248,22 +294,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
-            score.text = "Money: \(money)"
+            score.text = "Money: $\(money)"
+            boxesDestroyed += 1
         }else if collision == BulletCategory | BoxTwoCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
-            score.text = "Money: \(money)"
+            score.text = "Money: $\(money)"
+            boxesDestroyed += 1
         }else if collision == BulletCategory | BoxThreeCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
-            score.text = "Money: \(money)"
+            score.text = "Money: $\(money)"
+            boxesDestroyed += 1
         }else if collision == BulletCategory | BoxFourCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
-            score.text = "Money: \(money)"
+            score.text = "Money: $\(money)"
+            boxesDestroyed += 1
         }
         
     }
@@ -298,6 +348,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             spawnBullet(lane: name!)
         }else if name == "laneFour"{
             spawnBullet(lane: name!)
+        }else if name == "upgrade" {
+            let up = UpgradeScene(fileNamed: "UpgradeScene")
+            up?.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(up)
         }
     }
     
@@ -306,6 +360,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        if boxesDestroyed == 5 {
+            if boxSpawned == true {
+                boxDropSpawnRate = 10
+                wave = 2
+                waveLabel.text = "Wave: \(wave)"
+                cooldown.isHidden = false
+            }
+            else {
+                cooldown.isHidden = true
+                boxDropSpawnRate = 2.7
+            }
+        }
+        else if boxesDestroyed == 10 {
+            if boxSpawned == true {
+                boxDropSpawnRate = 10
+                wave = 3
+                waveLabel.text = "Wave: \(wave)"
+                cooldown.isHidden = false
+            }
+            else {
+                cooldown.isHidden = true
+                boxDropSpawnRate = 2.7
+                self.physicsWorld.gravity = CGVector(dx: 0.0,dy: -3.0)
+            }
+        }
+        else if boxesDestroyed == 18 {
+            if boxSpawned == true {
+                boxDropSpawnRate = 10
+                wave = 4
+                waveLabel.text = "Wave: \(wave)"
+                cooldown.isHidden = false
+            }
+            else {
+                cooldown.isHidden = true
+                boxDropSpawnRate = 2.4
+            }
+        }
+        else if boxesDestroyed == 28 {
+            if boxSpawned == true {
+                boxDropSpawnRate = 10
+                wave = 5
+                waveLabel.text = "Wave: \(wave)"
+                cooldown.isHidden = false
+            }
+            else {
+                cooldown.isHidden = true
+                boxDropSpawnRate = 2.4
+                self.physicsWorld.gravity = CGVector(dx: 0.0,dy: -3.2)
+            }
+        }
+        else if boxesDestroyed == 40 {
+            if boxSpawned == true {
+                boxDropSpawnRate = 10
+                wave = 6
+                waveLabel.text = "Wave: \(wave)"
+                cooldown.isHidden = false
+            }
+            else {
+                cooldown.isHidden = true
+                boxDropSpawnRate = 2
+            }
+        }
         // Called before each frame is rendered
         
         // Initialize _lastUpdateTime if it has not already been
