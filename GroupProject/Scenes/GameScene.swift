@@ -8,7 +8,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var boxesDestroyed: Int = 0
     private var boxSpawned: Bool = false
     private var wave: Int = 1
-    let upgrade = SKSpriteNode(imageNamed: "add")
+    let upgrade = SKSpriteNode(imageNamed: "Upgrades_Menu")
     private let xPosition: [Int] = [50, 150, 250, 350]
     private var lastUpdateTime : TimeInterval = 0
     private var currentBoxSpawnTime : TimeInterval = 0
@@ -33,7 +33,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         upgrade.name = "upgrade"
-        upgrade.position = CGPoint(x: 350, y: 800)
+        upgrade.position = CGPoint(x: 335, y: frame.height - 85)
+        upgrade.size = CGSize(width: 100, height: 50)
         self.addChild(upgrade)
     }
     
