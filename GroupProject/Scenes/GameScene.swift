@@ -18,7 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var counter3: Int = 0
     private var counter4: Int = 0
     private let backgroundNode = BackgroundNode()
-
+    private let ceilingNode = CeilingNode()
+        
     let boxTexture = SKTexture(imageNamed: "box")
     let bulletTexture = SKTexture(imageNamed: "bullet")
     let addTexture = SKTexture(imageNamed: "add")
@@ -194,6 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box.physicsBody = SKPhysicsBody(texture: boxTexture, size: box.size)
         
         box.physicsBody?.restitution = 0.0
+        box.physicsBody?.friction = 0.0
         box.physicsBody?.allowsRotation = false
     
         
@@ -201,22 +203,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             box.name = "box1"
             box.physicsBody?.categoryBitMask = BoxOneCategory
             box.physicsBody?.collisionBitMask = BoxOneCategory | FloorCategory | AddCategory | TurretOneCategory
-            box.physicsBody?.contactTestBitMask = BoxOneCategory | BulletCategory
+            box.physicsBody?.contactTestBitMask = BoxOneCategory | BulletCategory | CeilCategory
         }else if random == (150){
             box.name = "box2"
             box.physicsBody?.categoryBitMask = BoxTwoCategory
             box.physicsBody?.collisionBitMask = BoxTwoCategory | FloorCategory | AddCategory | TurretTwoCategory
-            box.physicsBody?.contactTestBitMask = BoxTwoCategory | BulletCategory
+            box.physicsBody?.contactTestBitMask = BoxTwoCategory | BulletCategory | CeilCategory
         }else if random == (250){
             box.name = "box3"
             box.physicsBody?.categoryBitMask = BoxThreeCategory
             box.physicsBody?.collisionBitMask = BoxThreeCategory | FloorCategory | AddCategory | TurretThreeCategory
-            box.physicsBody?.contactTestBitMask = BoxThreeCategory | BulletCategory
+            box.physicsBody?.contactTestBitMask = BoxThreeCategory | BulletCategory | CeilCategory
         }else if random == (350){
             box.name = "box4"
             box.physicsBody?.categoryBitMask = BoxFourCategory
             box.physicsBody?.collisionBitMask = BoxFourCategory | FloorCategory | AddCategory | TurretFourCategory
-            box.physicsBody?.contactTestBitMask = BoxFourCategory | BulletCategory
+            box.physicsBody?.contactTestBitMask = BoxFourCategory | BulletCategory | CeilCategory
         }
         
         let yPosition = size.height + box.size.height
@@ -253,6 +255,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(backgroundNode)
         spawnPlus()
         
+        ceilingNode.setup(size:size)
+        addChild(ceilingNode)
+        
         score.text = "Money: $\(money)"
         score.position = CGPoint(x: 85, y:frame.height - 85)
         score.fontSize = 25
@@ -283,21 +288,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision:UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == BoxOneCategory | BoxOneCategory{
-            print("Collision Lane 1 made")
-            counter = counter + 1
-            print(counter)
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+            contact.bodyA.node?.physicsBody?.velocity.dx = 0
+            contact.bodyA.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxTwoCategory | BoxTwoCategory{
-            print("Collision Lane 2 made")
-            counter2 = counter2 + 1
-            print(counter2)
+            
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+            contact.bodyA.node?.physicsBody?.velocity.dx = 0
+            contact.bodyA.node?.physicsBody?.velocity.dy = 0
+            
         }else if collision == BoxThreeCategory | BoxThreeCategory{
-            print("Collision Lane 3 made")
-            counter3 = counter3 + 1
-            print(counter3)
+            
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+            contact.bodyA.node?.physicsBody?.velocity.dx = 0
+            contact.bodyA.node?.physicsBody?.velocity.dy = 0
+          
         }else if collision == BoxFourCategory | BoxFourCategory{
-            print("Collision Lane 4 made")
-            counter4 = counter4 + 1
-            print(counter4)
+            
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+            contact.bodyA.node?.physicsBody?.velocity.dx = 0
+            contact.bodyA.node?.physicsBody?.velocity.dy = 0
+          
         }else if collision == BoxOneCategory | AddCategory{
             if contact.bodyA.categoryBitMask == AddCategory{
                 contact.bodyA.node?.removeFromParent()
@@ -347,19 +362,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
         }else if collision == BoxOneCategory | FloorCategory{
-            print(contact.bodyB.node?.name ?? "stupid")
+            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxTwoCategory | FloorCategory{
-            print(contact.bodyB.node?.name ?? "stupid")
+            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxThreeCategory | FloorCategory{
-            print(contact.bodyB.node?.name ?? "stupid")
+            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxFourCategory | FloorCategory{
-            print(contact.bodyB.node?.name ?? "stupid")
+            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxOneCategory | TurretOneCategory{
@@ -386,6 +401,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyA.node?.removeFromParent()
             }else if contact.bodyB.node?.physicsBody?.categoryBitMask == TurretFourCategory{
                 contact.bodyB.node?.removeFromParent()
+            }
+        }else if collision == BoxOneCategory | CeilCategory{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                self.counter += 1
+                print(self.counter)
+            }
+    
+
+        }else if collision == BoxTwoCategory | CeilCategory{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                self.counter2 += 1
+                print(self.counter2)
+            }
+        }else if collision == BoxThreeCategory | CeilCategory{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                self.counter3 += 1
+                print(self.counter3)
+            }
+        }else if collision == BoxFourCategory | CeilCategory{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                self.counter4 += 1
+                print(self.counter4)
             }
         }
         
@@ -435,18 +472,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
+            counter -= 1
         }else if name == "box2" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
-        }else if name == "box3" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            counter2 -= 1
+        }else if name == "box3" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
-        }else if name == "box4" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            counter3 -= 1
+        }else if name == "box4" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
+            counter4 -= 1
         }
 
 
@@ -540,9 +581,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.lastUpdateTime = currentTime
         
-        if counter == 14 || counter2 == 14 || counter3 == 14 || counter4 == 14{
+        if counter == 8 || counter2 == 8 || counter3 == 8 || counter4 == 8{
             scene?.view?.isPaused = true
-            print("GAME OVER MAN")
+            print("GAME OVER")
         }
     }
 }

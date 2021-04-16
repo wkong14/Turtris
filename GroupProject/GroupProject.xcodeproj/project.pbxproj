@@ -14,6 +14,7 @@
 		383C4B4B2617FBE80017136B /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383C4B4A2617FBE80017136B /* CreditsScene.swift */; };
 		9603A19C26166A3F00C4BE66 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9603A19B26166A3F00C4BE66 /* Background.swift */; };
 		9603A19F261676C800C4BE66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9603A19E261676C800C4BE66 /* Constants.swift */; };
+		9617EB672629D47100B0FD06 /* Ceil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617EB662629D47100B0FD06 /* Ceil.swift */; };
 		BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */; };
 		BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4AB1D74A62C00853E63 /* GameScene.swift */; };
 		BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E4AD1D74A62C00853E63 /* GameViewController.swift */; };
@@ -30,6 +31,7 @@
 		383C4B4A2617FBE80017136B /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		9603A19B26166A3F00C4BE66 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		9603A19E261676C800C4BE66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9617EB662629D47100B0FD06 /* Ceil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ceil.swift; sourceTree = "<group>"; };
 		BBA2E4A21D74A62C00853E63 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBA2E4AB1D74A62C00853E63 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Scenes/GameScene.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				9603A19B26166A3F00C4BE66 /* Background.swift */,
+				9617EB662629D47100B0FD06 /* Ceil.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				BBA2E4AC1D74A62C00853E63 /* GameScene.swift in Sources */,
 				BBA2E4AE1D74A62C00853E63 /* GameViewController.swift in Sources */,
 				0AE62A9C2617B332003C2A39 /* MenuScene.swift in Sources */,
+				9617EB672629D47100B0FD06 /* Ceil.swift in Sources */,
 				BBA2E4A61D74A62C00853E63 /* AppDelegate.swift in Sources */,
 				383C4B412617D95B0017136B /* UpgradeScene.swift in Sources */,
 				9603A19C26166A3F00C4BE66 /* Background.swift in Sources */,
