@@ -5,6 +5,7 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    public var currentUpgrade = 0
     private var boxesDestroyed: Int = 0
     private var boxSpawned: Bool = false
     private var wave: Int = 1
@@ -432,43 +433,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-                
+        let up = UpgradeScene(fileNamed: "UpgradeScene")
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         let name = touchedNode.name
         print(positionInScene)
         print(touchedNode.physicsBody?.velocity ?? 1)
-        if name == "one"{
+        if ["one", "two", "three", "four"].contains(name) {
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
-        }else if name == "two"{
-            touchedNode.removeFromParent()
-            spawnTurret(lane: name!)
-        }else if name == "three"{
-            touchedNode.removeFromParent()
-            spawnTurret(lane: name!)
-        }else if name == "four"{
-            touchedNode.removeFromParent()
-            spawnTurret(lane: name!)
-        }else if name == "laneOne"{
-            spawnBullet(lane: name!)
-            touchedNode.name = "cooldown"
-            cooldown(node: touchedNode)
-        }else if name == "laneTwo"{
-            spawnBullet(lane: name!)
-            touchedNode.name = "cooldown"
-            cooldown(node: touchedNode)
-        }else if name == "laneThree"{
-            spawnBullet(lane: name!)
-            touchedNode.name = "cooldown"
-            cooldown(node: touchedNode)
-        }else if name == "laneFour"{
-            spawnBullet(lane: name!)
-            touchedNode.name = "cooldown"
-            cooldown(node: touchedNode)
+        }else if ["laneOne", "laneTwo", "laneThree", "laneFour"].contains(name) {
+            switch currentUpgrade {
+            case 1:
+                print("Hi 1")
+                currentUpgrade = 0
+            case 2:
+                print("Hi 2")
+                currentUpgrade = 0
+            case 3:
+                print("Hi 3")
+                currentUpgrade = 0
+            case 4:
+                print("Hi 4")
+                currentUpgrade = 0
+            case 5:
+                print("Hi 5")
+                currentUpgrade = 0
+            case 6:
+                print("Hi 6")
+                currentUpgrade = 0
+            case 7:
+                print("Hi 7")
+                currentUpgrade = 0
+            case 8:
+                print("Hi 8")
+                currentUpgrade = 0
+            default:
+                print(currentUpgrade)
+                print("hello")
+                spawnBullet(lane: name!)
+                touchedNode.name = "cooldown"
+                cooldown(node: touchedNode)
+            }
         }else if name == "upgrade" {
-            let up = UpgradeScene(fileNamed: "UpgradeScene")
             up?.prevScene = self
             up?.scaleMode = .aspectFill
             self.scene?.view?.presentScene(up)
