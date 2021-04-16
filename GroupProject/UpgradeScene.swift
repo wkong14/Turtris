@@ -9,11 +9,10 @@
 import SpriteKit
 
 class UpgradeScene: SKScene {
+    public var prevScene: SKScene? = nil
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let transition:SKTransition = SKTransition.fade(withDuration: 1)
-        let scene = GameScene(size: self.size)
-        scene.scaleMode = self.scaleMode
-        self.view?.presentScene(scene, transition: transition)
+        self.view?.presentScene(prevScene!, transition: transition)
     }
 }

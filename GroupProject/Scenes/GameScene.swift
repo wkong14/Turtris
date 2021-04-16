@@ -39,6 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         upgrade.position = CGPoint(x: 335, y: frame.height - 85)
         upgrade.size = CGSize(width: 100, height: 50)
         upgrade.zPosition = CGFloat(100)
+        upgrade.removeFromParent()
         self.addChild(upgrade)
     }
     
@@ -323,6 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }else if collision == BoxTwoCategory | AddCategory{
             if contact.bodyA.categoryBitMask == AddCategory{
                 contact.bodyA.node?.removeFromParent()
+                
             }else{
                 contact.bodyB.node?.removeFromParent()
             }
@@ -467,6 +469,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cooldown(node: touchedNode)
         }else if name == "upgrade" {
             let up = UpgradeScene(fileNamed: "UpgradeScene")
+            up?.prevScene = self
             up?.scaleMode = .aspectFill
             self.scene?.view?.presentScene(up)
         }else if name == "box1" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
