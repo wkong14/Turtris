@@ -20,7 +20,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var counter4: Int = 0
     private let backgroundNode = BackgroundNode()
     private let ceilingNode = CeilingNode()
+    
+    var turretLaneOne = "default"
+    var turretLaneTwo = "default"
+    var turretLaneThree = "default"
+    var turretLaneFour = "default"
+    
+    let cdTextureDef = SKTexture(imageNamed: "cooldown")
+    let cdTextureOne = SKTexture(imageNamed: "cooldown2")
+    let cdTextureTwo = SKTexture(imageNamed: "cooldown3")
+    let cdTextureThree = SKTexture(imageNamed: "cooldown4")
+    let cdTextureFour = SKTexture(imageNamed: "cooldown5")
+    let cdTextureFive = SKTexture(imageNamed: "cooldown6")
+    let cdTextureSix = SKTexture(imageNamed: "cooldown7")
+    let cdTextureSeven = SKTexture(imageNamed: "cooldown8")
+    let cdTextureEight = SKTexture(imageNamed: "cooldown9")
+    
         
+    let upgradeOne = SKTexture(imageNamed: "upgrade1")
+    let upgradeTwo = SKTexture(imageNamed: "upgrade2")
+    let upgradeThree = SKTexture(imageNamed: "upgrade3")
+    let upgradeFour = SKTexture(imageNamed: "upgrade4")
+    let upgradeFive = SKTexture(imageNamed: "upgrade5")
+    let upgradeSix = SKTexture(imageNamed: "upgrade6")
+    let upgradeSeven = SKTexture(imageNamed: "upgrade7")
+    let upgradeEight = SKTexture(imageNamed: "upgrade8")
+    
     let boxTexture = SKTexture(imageNamed: "box")
     let bulletTexture = SKTexture(imageNamed: "bullet")
     let addTexture = SKTexture(imageNamed: "add")
@@ -132,15 +157,289 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(turret)
     }
     
-    func cooldown(node: SKNode){
-        let cdTexture = SKTexture(imageNamed: "cooldown")
-        let action = SKAction.setTexture(cdTexture)
-        node.run(action)
+   
+    
+    func cooldown(node: SKNode, laneTurr: String){
+        var action:SKAction
+        var wait:SKAction
+        var turTexture:SKTexture
         
-        let wait = SKAction.wait(forDuration: 3)
-        let turTexture = SKTexture(imageNamed: "turret1")
-        let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
-        node.run(cooldown)
+        if laneTurr == "laneOne"{
+            switch turretLaneOne{
+            case "default":
+                action = SKAction.setTexture(cdTextureDef)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "turret1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade1":
+                action = SKAction.setTexture(cdTextureOne)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade2":
+                action = SKAction.setTexture(cdTextureTwo)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade2")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade3":
+                action = SKAction.setTexture(cdTextureThree)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade3")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade4":
+                action = SKAction.setTexture(cdTextureFour)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade4")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade5":
+                action = SKAction.setTexture(cdTextureFive)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade5")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade6":
+                action = SKAction.setTexture(cdTextureSix)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade6")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade7":
+                action = SKAction.setTexture(cdTextureSeven)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade7")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade8":
+                action = SKAction.setTexture(cdTextureEight)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade8")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            default:
+                print("wrong")
+            }
+        }else if laneTurr == "laneTwo"{
+            switch turretLaneTwo{
+            case "default":
+                action = SKAction.setTexture(cdTextureDef)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "turret1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade1":
+                action = SKAction.setTexture(cdTextureOne)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade2":
+                action = SKAction.setTexture(cdTextureTwo)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade2")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade3":
+                action = SKAction.setTexture(cdTextureThree)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade3")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade4":
+                action = SKAction.setTexture(cdTextureFour)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade4")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade5":
+                action = SKAction.setTexture(cdTextureFive)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade5")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade6":
+                action = SKAction.setTexture(cdTextureSix)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade6")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade7":
+                action = SKAction.setTexture(cdTextureSeven)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade7")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade8":
+                action = SKAction.setTexture(cdTextureEight)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade8")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            default:
+                print("wrong")
+            }
+        }else if laneTurr == "laneThree"{
+            switch turretLaneThree{
+            case "default":
+                action = SKAction.setTexture(cdTextureDef)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "turret1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade1":
+                action = SKAction.setTexture(cdTextureOne)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade2":
+                action = SKAction.setTexture(cdTextureTwo)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade2")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade3":
+                action = SKAction.setTexture(cdTextureThree)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade3")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade4":
+                action = SKAction.setTexture(cdTextureFour)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade4")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade5":
+                action = SKAction.setTexture(cdTextureFive)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade5")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade6":
+                action = SKAction.setTexture(cdTextureSix)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade6")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade7":
+                action = SKAction.setTexture(cdTextureSeven)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade7")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade8":
+                action = SKAction.setTexture(cdTextureEight)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade8")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            default:
+                print("wrong")
+            }
+        }else if laneTurr == "laneFour"{
+            switch turretLaneFour{
+            case "default":
+                action = SKAction.setTexture(cdTextureDef)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "turret1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade1":
+                action = SKAction.setTexture(cdTextureOne)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade1")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade2":
+                action = SKAction.setTexture(cdTextureTwo)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade2")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade3":
+                action = SKAction.setTexture(cdTextureThree)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade3")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade4":
+                action = SKAction.setTexture(cdTextureFour)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade4")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade5":
+                action = SKAction.setTexture(cdTextureFive)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade5")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade6":
+                action = SKAction.setTexture(cdTextureSix)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade6")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade7":
+                action = SKAction.setTexture(cdTextureSeven)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade7")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            case "upgrade8":
+                action = SKAction.setTexture(cdTextureEight)
+                node.run(action)
+                wait = SKAction.wait(forDuration: 3)
+                turTexture = SKTexture(imageNamed: "upgrade8")
+                let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+                node.run(cooldown)
+            default:
+                print("wrong")
+            }
+        }
+    
+        
+       
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3){
             if node.physicsBody?.categoryBitMask == TurretOneCategory{
@@ -432,6 +731,113 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func upgradeTurret(node: SKNode, upgrade:Int){
+        let action: SKAction
+        switch upgrade{
+        case 1:
+            action = SKAction.setTexture(upgradeOne)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade1"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade1"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade1"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade1"
+            }
+        case 2:
+            action = SKAction.setTexture(upgradeTwo)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade2"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade2"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade2"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade2"
+            }
+        case 3:
+            action = SKAction.setTexture(upgradeThree)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade3"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade3"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade3"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade3"
+            }
+        case 4:
+            action = SKAction.setTexture(upgradeFour)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade4"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade4"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade4"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade4"
+            }
+        case 5:
+            action = SKAction.setTexture(upgradeFive)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade5"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade5"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade5"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade5"
+            }
+        case 6:
+            action = SKAction.setTexture(upgradeSix)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade6"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade6"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade6"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade6"
+            }
+        case 7:
+            action = SKAction.setTexture(upgradeSeven)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade7"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade7"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade7"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade7"
+            }
+        case 8:
+            action = SKAction.setTexture(upgradeEight)
+            node.run(action)
+            if node.name == "laneOne"{
+                turretLaneOne = "upgrade8"
+            }else if node.name == "laneTwo"{
+                turretLaneTwo = "upgrade8"
+            }else if node.name == "laneThree"{
+                turretLaneThree = "upgrade8"
+            }else if node.name == "laneFour"{
+                turretLaneFour = "upgrade8"
+            }
+            
+        default:
+            print("oops")
+        }
+        
+         
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let up = UpgradeScene(fileNamed: "UpgradeScene")
         let touch:UITouch = touches.first!
@@ -447,34 +853,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             switch currentUpgrade {
             case 1:
                 print("Hi 1")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 2:
                 print("Hi 2")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 3:
                 print("Hi 3")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 4:
                 print("Hi 4")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 5:
                 print("Hi 5")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 6:
                 print("Hi 6")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 7:
                 print("Hi 7")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 8:
                 print("Hi 8")
+                upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             default:
                 print(currentUpgrade)
                 print("hello")
                 spawnBullet(lane: name!)
                 touchedNode.name = "cooldown"
-                cooldown(node: touchedNode)
+                cooldown(node: touchedNode, laneTurr: name!)
             }
         }else if name == "upgrade" {
             up?.prevScene = self
