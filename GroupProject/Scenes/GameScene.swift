@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let score = SKLabelNode(fontNamed: "Futura")
     let waveLabel = SKLabelNode(fontNamed: "Futura")
     let cooldown = SKLabelNode(fontNamed: "Futura")
+    let gameover = SKLabelNode(fontNamed: "Futura")
     
     override func didMove(to view: SKView) {
         upgrade.name = "upgrade"
@@ -403,24 +404,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.node?.removeFromParent()
             }
         }else if collision == BoxOneCategory | CeilCategory{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter += 1
                 print(self.counter)
             }
     
 
         }else if collision == BoxTwoCategory | CeilCategory{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter2 += 1
                 print(self.counter2)
             }
         }else if collision == BoxThreeCategory | CeilCategory{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter3 += 1
                 print(self.counter3)
             }
         }else if collision == BoxFourCategory | CeilCategory{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter4 += 1
                 print(self.counter4)
             }
@@ -496,6 +497,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+    }
+    
+    func goToGameScene(){
+        let gameScene: GameScene = GameScene(size: self.view!.bounds.size)
+        let transition = SKTransition.fade(withDuration: 1)
+        gameScene.scaleMode = SKSceneScaleMode.fill
+        self.view!.presentScene(gameScene, transition: transition)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -582,8 +590,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.lastUpdateTime = currentTime
         
         if counter == 8 || counter2 == 8 || counter3 == 8 || counter4 == 8{
-            scene?.view?.isPaused = true
+            
             print("GAME OVER")
+            gameover.text = "GAME OVER"
+            gameover.position = CGPoint(x: frame.midX, y: frame.midY)
+            gameover.fontSize = 45
+            gameover.zPosition = CGFloat(100)
+            gameover.alpha = CGFloat(0.8)
+            addChild(gameover)
+            scene?.view?.isPaused = true
+        
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+                self.scene?.view?.isPaused = false
+                self.removeAllChildren()
+                self.goToGameScene()
+            }
+            
         }
     }
 }
