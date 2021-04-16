@@ -8,6 +8,7 @@
 import SpriteKit
 
 class MenuScene: SKScene {
+    
     private var currentBoxSpawnTime : TimeInterval = 0
     private var lastUpdateTime : TimeInterval = 0
     

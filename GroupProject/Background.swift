@@ -10,6 +10,6 @@ public class BackgroundNode : SKNode {
     physicsBody?.restitution = 0
     physicsBody?.categoryBitMask = FloorCategory
     physicsBody?.contactTestBitMask = BoxOneCategory | BoxTwoCategory | BoxThreeCategory | BoxFourCategory
-
+    
   }
 }

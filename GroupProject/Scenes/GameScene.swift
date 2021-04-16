@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var counter3: Int = 0
     private var counter4: Int = 0
     private let backgroundNode = BackgroundNode()
+
     let boxTexture = SKTexture(imageNamed: "box")
     let bulletTexture = SKTexture(imageNamed: "bullet")
     let addTexture = SKTexture(imageNamed: "add")
@@ -127,6 +128,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(turret)
     }
     
+    func cooldown(node: SKNode){
+        let cdTexture = SKTexture(imageNamed: "cooldown")
+        let action = SKAction.setTexture(cdTexture)
+        node.run(action)
+        
+        let wait = SKAction.wait(forDuration: 3)
+        let turTexture = SKTexture(imageNamed: "turret1")
+        let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
+        node.run(cooldown)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+            if node.physicsBody?.categoryBitMask == TurretOneCategory{
+                node.name = "laneOne"
+            }else if node.physicsBody?.categoryBitMask == TurretTwoCategory{
+                node.name = "laneTwo"
+            }else if node.physicsBody?.categoryBitMask == TurretThreeCategory{
+                node.name = "laneThree"
+            }else if node.physicsBody?.categoryBitMask == TurretFourCategory{
+                node.name = "laneFour"
+            }
+        }
+         
+        
+    }
+    
     func spawnBullet(lane: String) {
         let animationDuration:TimeInterval = 1
         var actionArray = [SKAction]()
@@ -172,18 +198,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         
         if random == (50){
+            box.name = "box1"
             box.physicsBody?.categoryBitMask = BoxOneCategory
             box.physicsBody?.collisionBitMask = BoxOneCategory | FloorCategory | AddCategory | TurretOneCategory
             box.physicsBody?.contactTestBitMask = BoxOneCategory | BulletCategory
         }else if random == (150){
+            box.name = "box2"
             box.physicsBody?.categoryBitMask = BoxTwoCategory
             box.physicsBody?.collisionBitMask = BoxTwoCategory | FloorCategory | AddCategory | TurretTwoCategory
             box.physicsBody?.contactTestBitMask = BoxTwoCategory | BulletCategory
         }else if random == (250){
+            box.name = "box3"
             box.physicsBody?.categoryBitMask = BoxThreeCategory
             box.physicsBody?.collisionBitMask = BoxThreeCategory | FloorCategory | AddCategory | TurretThreeCategory
             box.physicsBody?.contactTestBitMask = BoxThreeCategory | BulletCategory
         }else if random == (350){
+            box.name = "box4"
             box.physicsBody?.categoryBitMask = BoxFourCategory
             box.physicsBody?.collisionBitMask = BoxFourCategory | FloorCategory | AddCategory | TurretFourCategory
             box.physicsBody?.contactTestBitMask = BoxFourCategory | BulletCategory
@@ -316,6 +346,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             money += 1
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
+        }else if collision == BoxOneCategory | FloorCategory{
+            print(contact.bodyB.node?.name ?? "stupid")
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+        }else if collision == BoxTwoCategory | FloorCategory{
+            print(contact.bodyB.node?.name ?? "stupid")
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+        }else if collision == BoxThreeCategory | FloorCategory{
+            print(contact.bodyB.node?.name ?? "stupid")
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+        }else if collision == BoxFourCategory | FloorCategory{
+            print(contact.bodyB.node?.name ?? "stupid")
+            contact.bodyB.node?.physicsBody?.velocity.dx = 0
+            contact.bodyB.node?.physicsBody?.velocity.dy = 0
+        }else if collision == BoxOneCategory | TurretOneCategory{
+            if contact.bodyA.node?.physicsBody?.categoryBitMask == TurretOneCategory{
+                contact.bodyA.node?.removeFromParent()
+            }else if contact.bodyB.node?.physicsBody?.categoryBitMask == TurretOneCategory{
+                contact.bodyB.node?.removeFromParent()
+            }
+             
+        }else if collision == BoxTwoCategory | TurretTwoCategory{
+            if contact.bodyA.node?.physicsBody?.categoryBitMask == TurretTwoCategory{
+                contact.bodyA.node?.removeFromParent()
+            }else if contact.bodyB.node?.physicsBody?.categoryBitMask == TurretTwoCategory{
+                contact.bodyB.node?.removeFromParent()
+            }
+        }else if collision == BoxThreeCategory | TurretThreeCategory{
+            if contact.bodyA.node?.physicsBody?.categoryBitMask == TurretThreeCategory{
+                contact.bodyA.node?.removeFromParent()
+            }else if contact.bodyB.node?.physicsBody?.categoryBitMask == TurretThreeCategory{
+                contact.bodyB.node?.removeFromParent()
+            }
+        }else if collision == BoxFourCategory | TurretFourCategory{
+            if contact.bodyA.node?.physicsBody?.categoryBitMask == TurretFourCategory{
+                contact.bodyA.node?.removeFromParent()
+            }else if contact.bodyB.node?.physicsBody?.categoryBitMask == TurretFourCategory{
+                contact.bodyB.node?.removeFromParent()
+            }
         }
         
     }
@@ -327,34 +398,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let touchedNode = self.atPoint(positionInScene)
         let name = touchedNode.name
         print(positionInScene)
+        print(touchedNode.physicsBody?.velocity ?? 1)
         if name == "one"{
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
         }else if name == "two"{
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
-            spawnBullet(lane: name!)
         }else if name == "three"{
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
-            spawnBullet(lane: name!)
         }else if name == "four"{
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
-            spawnBullet(lane: name!)
         }else if name == "laneOne"{
             spawnBullet(lane: name!)
+            touchedNode.name = "cooldown"
+            cooldown(node: touchedNode)
         }else if name == "laneTwo"{
             spawnBullet(lane: name!)
+            touchedNode.name = "cooldown"
+            cooldown(node: touchedNode)
         }else if name == "laneThree"{
             spawnBullet(lane: name!)
+            touchedNode.name = "cooldown"
+            cooldown(node: touchedNode)
         }else if name == "laneFour"{
             spawnBullet(lane: name!)
+            touchedNode.name = "cooldown"
+            cooldown(node: touchedNode)
         }else if name == "upgrade" {
             let up = UpgradeScene(fileNamed: "UpgradeScene")
             up?.scaleMode = .aspectFill
             self.scene?.view?.presentScene(up)
+        }else if name == "box1" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            money -= 1
+            score.text = "Money: $\(money)"
+            touchedNode.removeFromParent()
+        }else if name == "box2" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            money -= 1
+            score.text = "Money: $\(money)"
+            touchedNode.removeFromParent()
+        }else if name == "box3" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            money -= 1
+            score.text = "Money: $\(money)"
+            touchedNode.removeFromParent()
+        }else if name == "box4" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            money -= 1
+            score.text = "Money: $\(money)"
+            touchedNode.removeFromParent()
         }
+
+
+
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -444,7 +540,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.lastUpdateTime = currentTime
         
-        if counter == 6 || counter2 == 6 || counter3 == 6 || counter4 == 6{
+        if counter == 14 || counter2 == 14 || counter3 == 14 || counter4 == 14{
             scene?.view?.isPaused = true
             print("GAME OVER MAN")
         }

@@ -19,5 +19,6 @@ let TurretOneCategory: UInt32 = 0x1 << 9
 let TurretTwoCategory: UInt32 = 0x1 << 10
 let TurretThreeCategory: UInt32 = 0x1 << 11
 let TurretFourCategory: UInt32 = 0x1 << 12
+let CeilCategory:UInt32 = 0x1 << 13
 
 
