@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var counter2: Int = 0
     private var counter3: Int = 0
     private var counter4: Int = 0
+    private var cooltime = DispatchTimeInterval.seconds(3)
     private let backgroundNode = BackgroundNode()
     private let ceilingNode = CeilingNode()
     
@@ -25,6 +26,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var turretLaneTwo = "default"
     var turretLaneThree = "default"
     var turretLaneFour = "default"
+    
+    var laneOneShots = 0
+    var laneTwoShots = 0
+    var laneThreeShots = 0
+    var laneFourShots = 0
     
     let cdTextureDef = SKTexture(imageNamed: "cooldown")
     let cdTextureOne = SKTexture(imageNamed: "cooldown2")
@@ -190,42 +196,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "upgrade3":
                 action = SKAction.setTexture(cdTextureThree)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade3")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade4":
                 action = SKAction.setTexture(cdTextureFour)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade4")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade5":
                 action = SKAction.setTexture(cdTextureFive)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade5")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade6":
                 action = SKAction.setTexture(cdTextureSix)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade6")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade7":
                 action = SKAction.setTexture(cdTextureSeven)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade7")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade8":
                 action = SKAction.setTexture(cdTextureEight)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 0)
                 turTexture = SKTexture(imageNamed: "upgrade8")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
@@ -258,42 +269,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "upgrade3":
                 action = SKAction.setTexture(cdTextureThree)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade3")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade4":
                 action = SKAction.setTexture(cdTextureFour)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade4")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade5":
                 action = SKAction.setTexture(cdTextureFive)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade5")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade6":
                 action = SKAction.setTexture(cdTextureSix)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade6")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade7":
                 action = SKAction.setTexture(cdTextureSeven)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade7")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade8":
                 action = SKAction.setTexture(cdTextureEight)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 0)
                 turTexture = SKTexture(imageNamed: "upgrade8")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
@@ -326,42 +342,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "upgrade3":
                 action = SKAction.setTexture(cdTextureThree)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade3")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade4":
                 action = SKAction.setTexture(cdTextureFour)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade4")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade5":
                 action = SKAction.setTexture(cdTextureFive)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade5")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade6":
                 action = SKAction.setTexture(cdTextureSix)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade6")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade7":
                 action = SKAction.setTexture(cdTextureSeven)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade7")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade8":
                 action = SKAction.setTexture(cdTextureEight)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 0)
                 turTexture = SKTexture(imageNamed: "upgrade8")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
@@ -394,42 +415,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case "upgrade3":
                 action = SKAction.setTexture(cdTextureThree)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
                 turTexture = SKTexture(imageNamed: "upgrade3")
+                cooltime = DispatchTimeInterval.seconds(2)
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade4":
                 action = SKAction.setTexture(cdTextureFour)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
                 turTexture = SKTexture(imageNamed: "upgrade4")
+                cooltime = DispatchTimeInterval.seconds(2)
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade5":
                 action = SKAction.setTexture(cdTextureFive)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 2)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade5")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade6":
                 action = SKAction.setTexture(cdTextureSix)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(1)
                 turTexture = SKTexture(imageNamed: "upgrade6")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade7":
                 action = SKAction.setTexture(cdTextureSeven)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 1)
+                cooltime = DispatchTimeInterval.seconds(2)
                 turTexture = SKTexture(imageNamed: "upgrade7")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
             case "upgrade8":
                 action = SKAction.setTexture(cdTextureEight)
                 node.run(action)
-                wait = SKAction.wait(forDuration: 3)
+                wait = SKAction.wait(forDuration: 0)
                 turTexture = SKTexture(imageNamed: "upgrade8")
                 let cooldown = SKAction.sequence([wait, SKAction.setTexture(turTexture)])
                 node.run(cooldown)
@@ -441,7 +467,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
        
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+        DispatchQueue.main.asyncAfter(deadline: .now() + cooltime){
             if node.physicsBody?.categoryBitMask == TurretOneCategory{
                 node.name = "laneOne"
             }else if node.physicsBody?.categoryBitMask == TurretTwoCategory{
@@ -665,19 +691,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
         }else if collision == BoxOneCategory | FloorCategory{
-            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxTwoCategory | FloorCategory{
-            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxThreeCategory | FloorCategory{
-            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxFourCategory | FloorCategory{
-            print("Floor collision")
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
         }else if collision == BoxOneCategory | TurretOneCategory{
@@ -708,30 +730,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }else if collision == BoxOneCategory | CeilCategory{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter += 1
-                print(self.counter)
             }
     
 
         }else if collision == BoxTwoCategory | CeilCategory{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter2 += 1
-                print(self.counter2)
             }
         }else if collision == BoxThreeCategory | CeilCategory{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter3 += 1
-                print(self.counter3)
             }
         }else if collision == BoxFourCategory | CeilCategory{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 self.counter4 += 1
-                print(self.counter4)
             }
         }
         
     }
     
     func upgradeTurret(node: SKNode, upgrade:Int){
+        score.text = "Money: $\(money)"
         let action: SKAction
         switch upgrade{
         case 1:
@@ -844,51 +863,180 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         let name = touchedNode.name
-        print(positionInScene)
-        print(touchedNode.physicsBody?.velocity ?? 1)
+//        print(positionInScene)
+//        print(touchedNode.physicsBody?.velocity ?? 1)
         if ["one", "two", "three", "four"].contains(name) {
             touchedNode.removeFromParent()
             spawnTurret(lane: name!)
         }else if ["laneOne", "laneTwo", "laneThree", "laneFour"].contains(name) {
             switch currentUpgrade {
             case 1:
-                print("Hi 1")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 2:
-                print("Hi 2")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 3:
-                print("Hi 3")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 4:
-                print("Hi 4")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 5:
-                print("Hi 5")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 6:
-                print("Hi 6")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 7:
-                print("Hi 7")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             case 8:
-                print("Hi 8")
                 upgradeTurret(node: touchedNode, upgrade: currentUpgrade)
                 currentUpgrade = 0
             default:
-                print(currentUpgrade)
-                print("hello")
                 spawnBullet(lane: name!)
-                touchedNode.name = "cooldown"
-                cooldown(node: touchedNode, laneTurr: name!)
+                if touchedNode.name == "laneOne" {
+                    laneOneShots += 1
+                    if turretLaneOne == "upgrade1" && laneOneShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade2" && laneOneShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade3" && laneOneShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade4" && laneOneShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade5" && laneOneShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade6" && laneOneShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "upgrade7" && laneOneShots == 5{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    } else if turretLaneOne == "default" && laneOneShots == 1{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneOneShots = 0
+                    }
+                } else if touchedNode.name == "laneTwo" {
+                    laneTwoShots += 1
+                    if turretLaneTwo == "upgrade1" && laneTwoShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade2" && laneTwoShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade3" && laneTwoShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade4" && laneTwoShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade5" && laneTwoShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade6" && laneTwoShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "upgrade7" && laneTwoShots == 5{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    } else if turretLaneTwo == "default" && laneTwoShots == 1{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneTwoShots = 0
+                    }
+                } else if touchedNode.name == "laneThree" {
+                    laneThreeShots += 1
+                    if turretLaneThree == "upgrade1" && laneThreeShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade2" && laneThreeShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade3" && laneThreeShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade4" && laneThreeShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade5" && laneThreeShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade6" && laneThreeShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "upgrade7" && laneThreeShots == 5{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    } else if turretLaneThree == "default" && laneThreeShots == 1{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneThreeShots = 0
+                    }
+                } else if touchedNode.name == "laneFour" {
+                    laneFourShots += 1
+                    if turretLaneFour == "upgrade1" && laneFourShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade2" && laneFourShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade3" && laneFourShots == 2{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade4" && laneFourShots == 3{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade5" && laneFourShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade6" && laneFourShots == 4{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "upgrade7" && laneFourShots == 5{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    } else if turretLaneFour == "default" && laneFourShots == 1{
+                        touchedNode.name = "cooldown"
+                        cooldown(node: touchedNode, laneTurr: name!)
+                        laneFourShots = 0
+                    }
+                }
             }
         }else if name == "upgrade" {
             up?.prevScene = self
@@ -899,21 +1047,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter -= 1
+            spawnTurret(lane: "one")
         }else if name == "box2" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter2 -= 1
+            spawnTurret(lane: "two")
         }else if name == "box3" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter3 -= 1
+            spawnTurret(lane: "three")
         }else if name == "box4" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter4 -= 1
+            spawnTurret(lane: "four")
         }
 
 

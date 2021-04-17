@@ -20,32 +20,48 @@ class UpgradeScene: SKScene {
         let name = touchedNode.name
         switch name {
         case "Upgrade1.1":
-            prevScene?.currentUpgrade = 1
-            print("Hey this is upgrade 1")
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 5 {
+                prevScene?.currentUpgrade = 1
+                prevScene?.money -= 5
+            }
         case "Upgrade1.2":
-            prevScene?.currentUpgrade = 2
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 10 {
+                prevScene?.currentUpgrade = 2
+                prevScene?.money -= 10
+            }
         case "Upgrade2.1":
-            prevScene?.currentUpgrade = 3
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 15 {
+                prevScene?.currentUpgrade = 3
+                prevScene?.money -= 15
+            }
         case "Upgrade2.2":
-            prevScene?.currentUpgrade = 4
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 20 {
+                prevScene?.currentUpgrade = 4
+                prevScene?.money -= 20
+            }
         case "Upgrade2.3":
-            prevScene?.currentUpgrade = 5
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 25 {
+                prevScene?.currentUpgrade = 5
+                prevScene?.money -= 25
+            }
         case "Upgrade3.1":
-            prevScene?.currentUpgrade = 6
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 30 {
+                prevScene?.currentUpgrade = 6
+                prevScene?.money -= 30
+            }
         case "Upgrade3.2":
-            prevScene?.currentUpgrade = 7
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 35 {
+                prevScene?.currentUpgrade = 7
+                prevScene?.money -= 35
+            }
         case "Upgrade3.3":
-            prevScene?.currentUpgrade = 8
-            self.view?.presentScene(prevScene!, transition: transition)
+            if prevScene!.money >= 40 {
+                prevScene?.currentUpgrade = 8
+                prevScene?.money -= 40
+            }
         default:
             prevScene?.currentUpgrade = 0
         }
+        self.view?.presentScene(prevScene!, transition: transition)
     }
 }
