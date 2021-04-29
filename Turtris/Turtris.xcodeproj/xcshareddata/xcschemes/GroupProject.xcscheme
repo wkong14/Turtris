@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BBA2E4A11D74A62C00853E63"
-               BuildableName = "GroupProject.app"
-               BlueprintName = "GroupProject"
-               ReferencedContainer = "container:GroupProject.xcodeproj">
+               BuildableName = "Turtris.app"
+               BlueprintName = "Turtris"
+               ReferencedContainer = "container:Turtris.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BBA2E4A11D74A62C00853E63"
-            BuildableName = "GroupProject.app"
-            BlueprintName = "GroupProject"
-            ReferencedContainer = "container:GroupProject.xcodeproj">
+            BuildableName = "Turtris.app"
+            BlueprintName = "Turtris"
+            ReferencedContainer = "container:Turtris.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BBA2E4A11D74A62C00853E63"
-            BuildableName = "GroupProject.app"
-            BlueprintName = "GroupProject"
-            ReferencedContainer = "container:GroupProject.xcodeproj">
+            BuildableName = "Turtris.app"
+            BlueprintName = "Turtris"
+            ReferencedContainer = "container:Turtris.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

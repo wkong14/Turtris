@@ -32,7 +32,7 @@
 		9603A19B26166A3F00C4BE66 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		9603A19E261676C800C4BE66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9617EB662629D47100B0FD06 /* Ceil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ceil.swift; sourceTree = "<group>"; };
-		BBA2E4A21D74A62C00853E63 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA2E4A21D74A62C00853E63 /* Turtris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turtris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBA2E4AB1D74A62C00853E63 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Scenes/GameScene.swift; sourceTree = "<group>"; };
 		BBA2E4AD1D74A62C00853E63 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ViewControllers/GameViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		BBA2E4991D74A62C00853E63 = {
 			isa = PBXGroup;
 			children = (
-				BBA2E4A41D74A62C00853E63 /* GroupProject */,
+				BBA2E4A41D74A62C00853E63 /* Turtris */,
 				BBA2E4A31D74A62C00853E63 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,12 +97,12 @@
 		BBA2E4A31D74A62C00853E63 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BBA2E4A21D74A62C00853E63 /* GroupProject.app */,
+				BBA2E4A21D74A62C00853E63 /* Turtris.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BBA2E4A41D74A62C00853E63 /* GroupProject */ = {
+		BBA2E4A41D74A62C00853E63 /* Turtris */ = {
 			isa = PBXGroup;
 			children = (
 				BBA2E4A51D74A62C00853E63 /* AppDelegate.swift */,
@@ -111,7 +111,7 @@
 				BB36AD251D75D6E200FB54D0 /* ViewControllers */,
 				BB36AD261D75D70000FB54D0 /* Support */,
 			);
-			name = GroupProject;
+			name = Turtris;
 			sourceTree = "<group>";
 		};
 		BBE2D58D1D9AB93B0046B493 /* Sprites */ = {
@@ -126,9 +126,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BBA2E4A11D74A62C00853E63 /* GroupProject */ = {
+		BBA2E4A11D74A62C00853E63 /* Turtris */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BBA2E4BA1D74A62C00853E63 /* Build configuration list for PBXNativeTarget "GroupProject" */;
+			buildConfigurationList = BBA2E4BA1D74A62C00853E63 /* Build configuration list for PBXNativeTarget "Turtris" */;
 			buildPhases = (
 				BBA2E49E1D74A62C00853E63 /* Sources */,
 				BBA2E49F1D74A62C00853E63 /* Frameworks */,
@@ -138,9 +138,9 @@
 			);
 			dependencies = (
 			);
-			name = GroupProject;
+			name = Turtris;
 			productName = RainCat;
-			productReference = BBA2E4A21D74A62C00853E63 /* GroupProject.app */;
+			productReference = BBA2E4A21D74A62C00853E63 /* Turtris.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -160,7 +160,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BBA2E49D1D74A62C00853E63 /* Build configuration list for PBXProject "GroupProject" */;
+			buildConfigurationList = BBA2E49D1D74A62C00853E63 /* Build configuration list for PBXProject "Turtris" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -173,7 +173,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BBA2E4A11D74A62C00853E63 /* GroupProject */,
+				BBA2E4A11D74A62C00853E63 /* Turtris */,
 			);
 		};
 /* End PBXProject section */
@@ -378,7 +378,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BBA2E49D1D74A62C00853E63 /* Build configuration list for PBXProject "GroupProject" */ = {
+		BBA2E49D1D74A62C00853E63 /* Build configuration list for PBXProject "Turtris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBA2E4B81D74A62C00853E63 /* Debug */,
@@ -387,7 +387,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BBA2E4BA1D74A62C00853E63 /* Build configuration list for PBXNativeTarget "GroupProject" */ = {
+		BBA2E4BA1D74A62C00853E63 /* Build configuration list for PBXNativeTarget "Turtris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBA2E4BB1D74A62C00853E63 /* Debug */,
