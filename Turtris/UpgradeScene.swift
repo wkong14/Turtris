@@ -11,6 +11,12 @@ import SpriteKit
 class UpgradeScene: SKScene {
     public var prevScene: GameScene? = nil
     public var currentUpgrade: Int = 0
+    var score = SKLabelNode()
+    
+    override func didMove(to view: SKView) {
+        score = self.childNode(withName: "scoreLabel") as! SKLabelNode
+        score.text = "Money: $\(prevScene!.money)"
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let transition:SKTransition = SKTransition.fade(withDuration: 1)

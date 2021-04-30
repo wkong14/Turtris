@@ -67,6 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let gameover = SKLabelNode(fontNamed: "Futura")
     
     override func didMove(to view: SKView) {
+        score.text = "Money: $\(money)"
         upgrade.name = "upgrade"
         upgrade.position = CGPoint(x: 335, y: frame.height - 85)
         upgrade.size = CGSize(width: 100, height: 50)
