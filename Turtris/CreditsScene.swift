@@ -9,6 +9,12 @@
 import SpriteKit
 
 class CreditsScene: SKScene {
+    
+    override func didMove(to view: SKView) {
+        let bg = SKAudioNode(fileNamed: "turrit.mp3")
+        self.addChild(bg)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let transition:SKTransition = SKTransition.fade(withDuration: 1)
         let scene = MenuScene(size: self.size)

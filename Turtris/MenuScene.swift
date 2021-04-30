@@ -28,6 +28,8 @@ class MenuScene: SKScene {
     private let xPosition: [Int] = [50, 150, 250, 350]
 
     override func didMove(to view: SKView) {
+        let bg = SKAudioNode(fileNamed: "turrit.mp3")
+        self.addChild(bg)
         self.backgroundColor = UIColor.lightGray
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -2)
         

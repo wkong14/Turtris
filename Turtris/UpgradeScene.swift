@@ -14,6 +14,8 @@ class UpgradeScene: SKScene {
     var score = SKLabelNode()
     
     override func didMove(to view: SKView) {
+        let bg = SKAudioNode(fileNamed: "turrit.mp3")
+        self.addChild(bg)
         score = self.childNode(withName: "scoreLabel") as! SKLabelNode
         score.text = "Money: $\(prevScene!.money)"
     }
