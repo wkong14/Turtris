@@ -60,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var turretTwo: SKSpriteNode!
     var turretThree: SKSpriteNode!
     var turretFour: SKSpriteNode!
+    var bg: SKAudioNode!
     var money: Int = 5
     let score = SKLabelNode(fontNamed: "Futura")
     let waveLabel = SKLabelNode(fontNamed: "Futura")
@@ -67,8 +68,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let gameover = SKLabelNode(fontNamed: "Futura")
     
     override func didMove(to view: SKView) {
-        let bg = SKAudioNode(fileNamed: "turrit.mp3")
-        self.addChild(bg)
+        let music = SKAudioNode(fileNamed: "turrit.mp3")
+        bg = music
+        addChild(bg)
         score.text = "Money: $\(money)"
         upgrade.name = "upgrade"
         upgrade.position = CGPoint(x: 335, y: frame.height - 85)
@@ -1045,6 +1047,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let transition:SKTransition = SKTransition.fade(withDuration: 1)
             up?.prevScene = self
             up?.scaleMode = .aspectFill
+            bg.removeFromParent()
             self.scene?.view?.presentScene(up!, transition: transition)
         }else if name == "box1" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
