@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var money: Int = 5
     let score = SKLabelNode(fontNamed: "Futura")
     let waveLabel = SKLabelNode(fontNamed: "Futura")
-    let cooldown = SKLabelNode(fontNamed: "Futura")
+    let wavecd = SKLabelNode(fontNamed: "Futura")
     let gameover = SKLabelNode(fontNamed: "Futura")
     
     override func didMove(to view: SKView) {
@@ -605,13 +605,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         waveLabel.alpha = CGFloat(0.8)
         addChild(waveLabel)
         
-        cooldown.text = "You have 10 seconds until the next wave!"
-        cooldown.position = CGPoint(x: frame.midX, y: frame.midY)
-        cooldown.fontSize = 20
-        cooldown.zPosition = CGFloat(100)
-        cooldown.alpha = CGFloat(0.8)
-        cooldown.isHidden = true
-        addChild(cooldown)
+        wavecd.text = "You have 10 seconds until the next wave!"
+        wavecd.position = CGPoint(x: frame.midX, y: frame.midY)
+        wavecd.fontSize = 20
+        wavecd.zPosition = CGFloat(100)
+        wavecd.alpha = CGFloat(0.8)
+        wavecd.isHidden = true
+        addChild(wavecd)
         
         self.physicsWorld.contactDelegate = self
         
@@ -677,24 +677,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             money += 1
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
+            counter -= 1
         }else if collision == BulletCategory | BoxTwoCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
+            counter2 -= 1
         }else if collision == BulletCategory | BoxThreeCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
+            counter3 -= 1
         }else if collision == BulletCategory | BoxFourCategory{
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             money += 1
             score.text = "Money: $\(money)"
             boxesDestroyed += 1
+            counter4 -= 1
         }else if collision == BoxOneCategory | FloorCategory{
             contact.bodyB.node?.physicsBody?.velocity.dx = 0
             contact.bodyB.node?.physicsBody?.velocity.dy = 0
@@ -1052,26 +1056,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }else if name == "box1" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
-            touchedNode.removeFromParent()
             counter -= 1
+            touchedNode.removeFromParent()
             spawnTurret(lane: "one")
         }else if name == "box2" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
-            touchedNode.removeFromParent()
             counter2 -= 1
+            touchedNode.removeFromParent()
             spawnTurret(lane: "two")
         }else if name == "box3" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
-            touchedNode.removeFromParent()
             counter3 -= 1
+            touchedNode.removeFromParent()
             spawnTurret(lane: "three")
         }else if name == "box4" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
-            touchedNode.removeFromParent()
             counter4 -= 1
+            touchedNode.removeFromParent()
             spawnTurret(lane: "four")
         }
 
@@ -1096,10 +1100,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boxDropSpawnRate = 10
                 wave = 2
                 waveLabel.text = "Wave: \(wave)"
-                cooldown.isHidden = false
+                wavecd.isHidden = false
             }
             else {
-                cooldown.isHidden = true
+                wavecd.isHidden = true
                 boxDropSpawnRate = 2.7
             }
         }
@@ -1108,10 +1112,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boxDropSpawnRate = 10
                 wave = 3
                 waveLabel.text = "Wave: \(wave)"
-                cooldown.isHidden = false
+                wavecd.isHidden = false
             }
             else {
-                cooldown.isHidden = true
+                wavecd.isHidden = true
                 boxDropSpawnRate = 2.7
                 self.physicsWorld.gravity = CGVector(dx: 0.0,dy: -3.0)
             }
@@ -1121,10 +1125,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boxDropSpawnRate = 10
                 wave = 4
                 waveLabel.text = "Wave: \(wave)"
-                cooldown.isHidden = false
+                wavecd.isHidden = false
             }
             else {
-                cooldown.isHidden = true
+                wavecd.isHidden = true
                 boxDropSpawnRate = 2.4
             }
         }
@@ -1133,10 +1137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boxDropSpawnRate = 10
                 wave = 5
                 waveLabel.text = "Wave: \(wave)"
-                cooldown.isHidden = false
+                wavecd.isHidden = false
             }
             else {
-                cooldown.isHidden = true
+                wavecd.isHidden = true
                 boxDropSpawnRate = 2.4
                 self.physicsWorld.gravity = CGVector(dx: 0.0,dy: -3.2)
             }
@@ -1146,10 +1150,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boxDropSpawnRate = 10
                 wave = 6
                 waveLabel.text = "Wave: \(wave)"
-                cooldown.isHidden = false
+                wavecd.isHidden = false
             }
             else {
-                cooldown.isHidden = true
+                wavecd.isHidden = true
                 boxDropSpawnRate = 2
             }
         }
