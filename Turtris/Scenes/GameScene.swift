@@ -10,7 +10,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var boxSpawned: Bool = false
     private var wave: Int = 1
     let upgrade = SKSpriteNode(imageNamed: "Upgrades_Menu")
-    private let xPosition: [Int] = [50, 150, 250, 350]
+    private let xPosition: [Int] = [50, 155, 260, 365]
     private var lastUpdateTime : TimeInterval = 0
     private var currentBoxSpawnTime : TimeInterval = 0
     private var boxDropSpawnRate : TimeInterval = 3
@@ -99,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addLaneTwo.physicsBody?.pinned = true
         addLaneTwo.physicsBody?.categoryBitMask = AddCategory
         addLaneTwo.physicsBody?.contactTestBitMask =  BoxTwoCategory
-        addLaneTwo.position = CGPoint(x: 150, y: 130)
+        addLaneTwo.position = CGPoint(x: 155, y: 130)
 
         let addLaneThree = SKSpriteNode(texture: addTexture)
         addLaneThree.name = "three"
@@ -109,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addLaneThree.physicsBody?.pinned = true
         addLaneThree.physicsBody?.categoryBitMask = AddCategory
         addLaneThree.physicsBody?.contactTestBitMask =  BoxThreeCategory
-        addLaneThree.position = CGPoint(x: 250, y: 130)
+        addLaneThree.position = CGPoint(x: 260, y: 130)
 
         let addLaneFour = SKSpriteNode(texture: addTexture)
         addLaneFour.name = "four"
@@ -119,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addLaneFour.physicsBody?.pinned = true
         addLaneFour.physicsBody?.categoryBitMask = AddCategory
         addLaneFour.physicsBody?.contactTestBitMask =  BoxFourCategory
-        addLaneFour.position = CGPoint(x: 350, y: 130)
+        addLaneFour.position = CGPoint(x: 365, y: 130)
 
         addChild(addLaneOne)
         addChild(addLaneTwo)
@@ -147,19 +147,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             turret.name = "laneTwo"
             turret.physicsBody?.categoryBitMask = TurretTwoCategory
             turret.physicsBody?.contactTestBitMask = BoxTwoCategory
-            turret.position = CGPoint(x: 150, y: 130)
+            turret.position = CGPoint(x: 155, y: 130)
             turretTwo = turret
         }else if lane == "three"{
             turret.name = "laneThree"
             turret.physicsBody?.categoryBitMask = TurretThreeCategory
             turret.physicsBody?.contactTestBitMask = BoxThreeCategory
-            turret.position = CGPoint(x: 250, y: 130)
+            turret.position = CGPoint(x: 260, y: 130)
             turretThree = turret
         }else if lane == "four"{
             turret.name = "laneFour"
             turret.physicsBody?.categoryBitMask = TurretFourCategory
             turret.physicsBody?.contactTestBitMask = BoxFourCategory
-            turret.position = CGPoint(x: 350, y: 130)
+            turret.position = CGPoint(x: 365, y: 130)
             turretFour = turret
         }
         
@@ -535,17 +535,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             box.physicsBody?.categoryBitMask = BoxOneCategory
             box.physicsBody?.collisionBitMask = BoxOneCategory | FloorCategory | AddCategory | TurretOneCategory
             box.physicsBody?.contactTestBitMask = BoxOneCategory | BulletCategory | CeilCategory
-        }else if random == (150){
+        }else if random == (155){
             box.name = "box2"
             box.physicsBody?.categoryBitMask = BoxTwoCategory
             box.physicsBody?.collisionBitMask = BoxTwoCategory | FloorCategory | AddCategory | TurretTwoCategory
             box.physicsBody?.contactTestBitMask = BoxTwoCategory | BulletCategory | CeilCategory
-        }else if random == (250){
+        }else if random == (260){
             box.name = "box3"
             box.physicsBody?.categoryBitMask = BoxThreeCategory
             box.physicsBody?.collisionBitMask = BoxThreeCategory | FloorCategory | AddCategory | TurretThreeCategory
             box.physicsBody?.contactTestBitMask = BoxThreeCategory | BulletCategory | CeilCategory
-        }else if random == (350){
+        }else if random == (365){
             box.name = "box4"
             box.physicsBody?.categoryBitMask = BoxFourCategory
             box.physicsBody?.collisionBitMask = BoxFourCategory | FloorCategory | AddCategory | TurretFourCategory
@@ -1042,28 +1042,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }else if name == "upgrade" {
+            let transition:SKTransition = SKTransition.fade(withDuration: 1)
             up?.prevScene = self
             up?.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(up)
-        }else if name == "box1" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+            self.scene?.view?.presentScene(up!, transition: transition)
+        }else if name == "box1" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter -= 1
             spawnTurret(lane: "one")
-        }else if name == "box2" && ((touchedNode.physicsBody?.velocity.dx)! <= 0 && (touchedNode.physicsBody?.velocity.dy)! <= 0) && money != 0{
+        }else if name == "box2" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter2 -= 1
             spawnTurret(lane: "two")
-        }else if name == "box3" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
+        }else if name == "box3" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()
             counter3 -= 1
             spawnTurret(lane: "three")
-        }else if name == "box4" && ((touchedNode.physicsBody?.velocity.dx)! == 0 && (touchedNode.physicsBody?.velocity.dy)! == 0) && money != 0{
+        }else if name == "box4" && touchedNode.position.y <= 143 && money != 0{
             money -= 1
             score.text = "Money: $\(money)"
             touchedNode.removeFromParent()

@@ -1,7 +1,5 @@
 //
 //  Constants.swift
-//  RainCat
-//
 //  Created by Jason on 4/1/21.
 //  Copyright © 2021 Thirteen23. All rights reserved.
 //

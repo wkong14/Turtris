@@ -117,15 +117,15 @@ class MenuScene: SKScene {
         if let touch = touches.first {
             let pos = touch.location(in: self)
             let node = self.atPoint(pos)
+            let transition:SKTransition = SKTransition.fade(withDuration: 1)
 
             if node == playButton {
-                    let transition:SKTransition = SKTransition.fade(withDuration: 1)
                     let scene:SKScene = GameScene(size: self.size)
                     self.view?.presentScene(scene, transition: transition)
             } else if node == credits {
                 let cred = CreditsScene(fileNamed: "CreditsScene")
                 cred?.scaleMode = .aspectFill
-                self.scene?.view?.presentScene(cred)
+                self.scene?.view?.presentScene(cred!, transition: transition)
             }
         }
     }
